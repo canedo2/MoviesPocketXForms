@@ -1,14 +1,15 @@
-﻿using Xamarin.Forms;
-
-namespace MoviesPocketXForms
+﻿namespace MoviesPocketXForms
 {
+    using Xamarin.Forms;
+    using Views;
     public partial class App : Application
     {
         public App()
         {
             InitializeComponent();
 
-            MainPage = new MoviesPocketXFormsPage();
+            Page firstPage = new MainPage();
+            MainPage = new NavigationPage(firstPage);
         }
 
         protected override void OnStart()
