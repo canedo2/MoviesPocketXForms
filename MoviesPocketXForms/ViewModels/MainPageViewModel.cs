@@ -6,13 +6,15 @@
     using Providers;
     using Xamarin.Forms;
     using Services;
+    using System.Threading.Tasks;
+    using System.Windows.Input;
 
     public class MainPageViewModel: BaseViewModel
     {
         private ObservableCollection<Media> items;
         private IWebApiProvider webApiProvider;
         private INavigationService navigationService;
-        private Command showCinemasCommand;
+        public ICommand ShowCinemasCommand { get; }
 
 
         public MainPageViewModel()
@@ -20,7 +22,8 @@
             items = new ObservableCollection<Media>();
             webApiProvider = DependencyService.Get<IWebApiProvider>();
             navigationService = DependencyService.Get<INavigationService>();
-            showCinemasCommand = new Command(ShowCinemas);
+
+            ShowCinemasCommand = new Command(async () => await ShowCinemas());
         }
 
         public void Init(){
@@ -59,7 +62,7 @@
 			}
 		}
 
-        private async void ShowCinemas(){
+        private async Task ShowCinemas(){
 
             await this.navigationService.NavigateToShowCinemasPage();
             System.Diagnostics.Debug.WriteLine("SHOW CINEMAS");

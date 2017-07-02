@@ -1,22 +1,28 @@
-﻿
-
-namespace MoviesPocketXForms.Views
+﻿namespace MoviesPocketXForms.Views
 {
 	using Xamarin.Forms;
     using ViewModels;
+    using System;
 
     public partial class MainPage : ContentPage
-	{
+    {
         public MainPage()
-		{
-			InitializeComponent();
+        {
+            InitializeComponent();
 
-		}
+        }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
             (this.BindingContext as MainPageViewModel).Init();
         }
-	}
+
+        async void Hola(object sender, EventArgs e)
+        { 
+            System.Diagnostics.Debug.WriteLine("HOLA");
+            await DisplayAlert("hola","hola","adios");
+            await Navigation.PushAsync(new ShowCinemasPage());
+        }
+    }
 }
