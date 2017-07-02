@@ -5,16 +5,22 @@
     using Models;
     using Providers;
     using Xamarin.Forms;
+    using Services;
 
     public class MainPageViewModel: BaseViewModel
     {
         private ObservableCollection<Media> items;
         private IWebApiProvider webApiProvider;
+        private INavigationService navigationService;
+        private Command showCinemasCommand;
+
 
         public MainPageViewModel()
         {
             items = new ObservableCollection<Media>();
             webApiProvider = DependencyService.Get<IWebApiProvider>();
+            navigationService = DependencyService.Get<INavigationService>();
+            showCinemasCommand = new Command(ShowCinemas);
         }
 
         public void Init(){
@@ -52,5 +58,11 @@
 				RaisePropertyChanged();
 			}
 		}
+
+        private async void ShowCinemas(){
+
+            await this.navigationService.NavigateToShowCinemasPage();
+            System.Diagnostics.Debug.WriteLine("SHOW CINEMAS");
+        } 
     }
 }

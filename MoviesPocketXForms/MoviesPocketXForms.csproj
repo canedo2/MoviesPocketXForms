@@ -32,6 +32,12 @@
     <EmbeddedResource Include="Views\MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\DetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ShowCinemasPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -48,6 +54,16 @@
     <Compile Include="Providers\WebApiProvider.cs" />
     <Compile Include="Services\HttpService\HttpService.cs" />
     <Compile Include="Services\HttpService\IHttpService.cs" />
+    <Compile Include="Services\NavigationService\INavigationService.cs" />
+    <Compile Include="Services\NavigationService\NavigationService.cs" />
+    <Compile Include="Views\DetailPage.xaml.cs">
+      <DependentUpon>DetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\DetailPageViewModel.cs" />
+    <Compile Include="Views\ShowCinemasPage.xaml.cs">
+      <DependentUpon>ShowCinemasPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\ShowCinemasPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

@@ -8,6 +8,12 @@
     <ContentPage.BindingContext>
         <viewmodels:MainPageViewModel/>
     </ContentPage.BindingContext>
+    <ContentPage.Title>Buscar contenido</ContentPage.Title>
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cines" Order="Primary" Command="{Binding ShowCinemasCommand}" />
+    </ContentPage.ToolbarItems>
+        
     <StackLayout>
         <SearchBar Placeholder="Buscar" VerticalOptions="Start"/>
         <ListView 
@@ -43,7 +49,6 @@
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
-
         </ListView>
     </StackLayout>
 </ContentPage>
