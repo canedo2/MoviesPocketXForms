@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:MoviesPocketXForms.ViewModels" 
     xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
     x:Class="MoviesPocketXForms.Views.ShowCinemasPage">
+    <ContentPage.BindingContext>
+        <viewmodels:ShowCinemasPageViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Title>Cines cercanos</ContentPage.Title>
 	<ContentPage.Content>
-        <StackLayout VerticalOptions="StartAndExpand" Padding="30">
-            <maps:Map WidthRequest="320" HeightRequest="200"
+        <StackLayout x:Name="StackLayout" 
+            HorizontalOptions = "FillAndExpand" VerticalOptions ="FillAndExpand">
+            <maps:Map HorizontalOptions = "FillAndExpand"
+                VerticalOptions ="FillAndExpand"
                 x:Name="MyMap"
                 IsShowingUser="true"
-                MapType="Hybrid"/>
+                MapType="Street"/>
         </StackLayout>
 	</ContentPage.Content>
 </ContentPage>

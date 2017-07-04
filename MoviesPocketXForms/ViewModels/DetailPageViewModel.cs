@@ -16,6 +16,7 @@
 
         public void Init()
         {
+            IsLoading = true;
         }
 
 

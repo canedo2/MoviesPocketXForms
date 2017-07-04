@@ -13,6 +13,7 @@
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
+
             (this.BindingContext as ShowCinemasPageViewModel).Init();
 		}
     }

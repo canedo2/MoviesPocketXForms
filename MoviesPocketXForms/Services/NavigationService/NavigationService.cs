@@ -19,10 +19,8 @@ namespace MoviesPocketXForms.Services
 		}
 
         public async Task NavigateToShowCinemasPage(){
-
-            ShowCinemasPage showCinemasPage = new ShowCinemasPage();
-
-            await App.Current.MainPage.Navigation.PushAsync(showCinemasPage);
+            
+            await App.Current.MainPage.Navigation.PushAsync(new ShowCinemasPage());
         }
 	}
 }

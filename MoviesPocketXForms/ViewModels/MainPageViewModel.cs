@@ -65,7 +65,6 @@
         private async Task ShowCinemas(){
 
             await this.navigationService.NavigateToShowCinemasPage();
-            System.Diagnostics.Debug.WriteLine("SHOW CINEMAS");
         } 
     }
 }
