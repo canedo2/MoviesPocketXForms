@@ -3,9 +3,11 @@
 	using System.Net.Http;
 	using System.Threading.Tasks;
 
-	public interface IHttpService
+    using Models;
+    using System.Collections.Generic;
+    public interface IHttpService
 	{
-		Task<T> GetAsync<T>(string url);
+		Task<List<Media>> GetAsyncService<T>(string url);
 
 		Task<T> PostAsync<T>(string url, HttpContent content);
 	}

@@ -9,13 +9,13 @@
     using System.Threading.Tasks;
     using System.Windows.Input;
 
+
     public class MainPageViewModel: BaseViewModel
     {
         private ObservableCollection<Media> items;
         private IWebApiProvider webApiProvider;
         private INavigationService navigationService;
         public ICommand ShowCinemasCommand { get; }
-
 
         public MainPageViewModel()
         {
@@ -30,14 +30,17 @@
             IsLoading = true;
 
             //TODO:FIX WEBAPIPROVIDER
-            /*
-            var result = webApiProvider.GetMediaList().Result;
+            System.Diagnostics.Debug.WriteLine("Antes webApi");
 
-            foreach(Media m in result){
+
+
+            var result = webApiProvider.GetMediaList().Result;
+            System.Diagnostics.Debug.WriteLine("Despues webApi");
+            foreach (Media m in result){
 
                 items.Add(m);
 
-            }*/
+            }
                           
             for (int i = 0; i < 20; i++)
             {

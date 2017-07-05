@@ -22,7 +22,7 @@ namespace MoviesPocketXForms.Providers
         {
             string url = $"{NOW_PLAYING_URL}";
 
-            var result = await httpService.GetAsync<IList<Media>>(url);
+            var result = await httpService.GetAsyncService<IList<Media>>(url);
 
             return result;
         }
