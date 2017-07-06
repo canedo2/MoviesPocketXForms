@@ -2,6 +2,7 @@
 namespace MoviesPocketXForms.Services
 {
 	using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
 	using System.Net.Http;
 	using System.Threading.Tasks;
     using Models;
@@ -27,15 +28,22 @@ namespace MoviesPocketXForms.Services
             
             try
             {
-                System.Diagnostics.Debug.WriteLine("getasyncservice antes");
-                var response = await currentClient.GetAsync(uri);
-                System.Diagnostics.Debug.WriteLine("getasyncservice despues");
-                if (response.IsSuccessStatusCode)
-                {
-                    System.Diagnostics.Debug.WriteLine("success RESPONSE");
-                    var content = await response.Content.ReadAsStringAsync();
-                    Items = JsonConvert.DeserializeObject<List<Media>>(content);
-                }
+                var response = currentClient.GetStringAsync(uri);
+                System.Diagnostics.Debug.WriteLine(response.Result + "\n COSAS CHULAS \n\n\n");
+				
+                JObject jsonObj = JObject.Parse(response.Result);
+				Dictionary<string, object> dictObj = jsonObj.ToObject<Dictionary<string, object>>();
+
+                var results = dictObj["results"];
+
+
+
+                System.Diagnostics.Debug.WriteLine("Primer item de results(Dictionary) : \n\n" + results + "\n\n");
+
+                Items = JsonConvert.DeserializeObject<List<Media>>(results.ToString());
+
+                System.Diagnostics.Debug.WriteLine("\n\n" + Items[0].Overview + "\n\n");
+
             }
             catch (Exception ex)
             {
@@ -67,5 +75,6 @@ namespace MoviesPocketXForms.Services
 
 			return default(T);
 		}
+
 	}
 }
