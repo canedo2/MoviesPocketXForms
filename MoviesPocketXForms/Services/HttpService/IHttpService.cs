@@ -7,7 +7,7 @@
     using System.Collections.Generic;
     public interface IHttpService
 	{
-		Task<List<Media>> GetAsyncService<T>(string url);
+		Task<T> GetAsync<T>(string url);
 
 		Task<T> PostAsync<T>(string url, HttpContent content);
 	}

@@ -5,6 +5,7 @@ namespace MoviesPocketXForms.Providers
     using System.Threading.Tasks;
     using MoviesPocketXForms.Models;
     using MoviesPocketXForms.Services;
+    using Newtonsoft.Json;
     using Xamarin.Forms;
 
     public class WebApiProvider : IWebApiProvider
@@ -22,9 +23,18 @@ namespace MoviesPocketXForms.Providers
         {
             string url = $"{NOW_PLAYING_URL}";
 
-            var result = await httpService.GetAsyncService<IList<Media>>(url);
+            var result = await httpService.GetAsync<Dictionary<string, object>>(url);
 
-            return result;
+            System.Diagnostics.Debug.WriteLine("\n\nResult: " + result + "\n\n");
+
+            var results = result["results"];
+
+            System.Diagnostics.Debug.WriteLine("\n\nResults: " + results + "\n\n");
+
+            var items = JsonConvert.DeserializeObject<List<Media>>(results.ToString());
+
+            System.Diagnostics.Debug.WriteLine("\n\nItems: " + items[0].Title + "\n\n");
+            return items;
         }
 
 

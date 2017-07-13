@@ -2,6 +2,7 @@
 {
     using Base;
     using System.Collections.ObjectModel;
+    using System.Collections.Generic;
     using Models;
     using Providers;
     using Xamarin.Forms;
@@ -29,18 +30,22 @@
         public void Init(){
             IsLoading = true;
 
-            //TODO:FIX WEBAPIPROVIDER
-            System.Diagnostics.Debug.WriteLine("Antes webApi");
+            Items = async () =>{
+				return await webApiProvider.GetMediaList()
+                }
 
+            Command getMedia = new Command(async () => Items = await webApiProvider.GetMediaList();
 
+            if(getMedia.CanExecute(null)){
+                getMedia.Execute(null);
+            }
 
-            var result = webApiProvider.GetMediaList().Result;
-            System.Diagnostics.Debug.WriteLine("Despues webApi");
-            foreach (Media m in result){
+           
+            /*foreach (Media m in result){
                 m.PosterPath = "https://image.tmdb.org/t/p/w500" + m.PosterPath;
                 items.Add(m);
 
-            }
+            }*/
                           
             /*for (int i = 0; i < 20; i++)
             {
