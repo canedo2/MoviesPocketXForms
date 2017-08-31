@@ -5,7 +5,7 @@
 
 	public interface INavigationService
 	{
-        Task NavigateToDetailPage(Media media);
+        Task NavigateToDetailPage(MyMedia media);
         Task NavigateToShowCinemasPage();
 	}
 }

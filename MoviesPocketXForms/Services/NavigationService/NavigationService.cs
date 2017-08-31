@@ -9,7 +9,7 @@ namespace MoviesPocketXForms.Services
 
     public class NavigationService : INavigationService
     {
-        public async Task NavigateToDetailPage(Media media)
+        public async Task NavigateToDetailPage(MyMedia media)
 		{
             DetailPage detailPage = new DetailPage();
 			var vmPage = (detailPage.BindingContext as DetailPageViewModel);

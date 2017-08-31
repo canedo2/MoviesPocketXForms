@@ -4,8 +4,8 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    public interface IWebApiProvider
+    public interface IWebApiProvider<MyMedia>
     {
-        Task<IList<Media>> GetMediaList();
+        Task<IEnumerable<MyMedia>> GetMediaListAsync();
     }
 }

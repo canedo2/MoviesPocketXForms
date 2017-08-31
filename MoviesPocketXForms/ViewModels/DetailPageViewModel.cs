@@ -3,7 +3,7 @@
     using Models;
     public class DetailPageViewModel: BaseViewModel
     {   
-        public Media Media
+        public MyMedia Media
         {
             get;
             set;

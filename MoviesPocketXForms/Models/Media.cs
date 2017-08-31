@@ -1,13 +1,13 @@
 ﻿namespace MoviesPocketXForms.Models
 {
     using Newtonsoft.Json;
-    public class Media
+    public class MyMedia
     {
-        public Media(){
+        public MyMedia(){
             
         }
 
-        public Media(int id, string title, string posterPath, string overview, double voteAverage, string mediatype){
+        public MyMedia(int id, string title, string posterPath, string overview, double voteAverage, string mediatype){
             this.Id = id;
             this.Title = title;
             this.PosterPath = posterPath;

@@ -8,7 +8,7 @@ namespace MoviesPocketXForms.Providers
     using Newtonsoft.Json;
     using Xamarin.Forms;
 
-    public class WebApiProvider : IWebApiProvider
+    public class WebApiProvider : IWebApiProvider<MyMedia>
     {
         private const string NOW_PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=e8f58c65a7f1442fb4df99e10ae45604&language=es-ES&page=1";
 
@@ -19,7 +19,7 @@ namespace MoviesPocketXForms.Providers
             httpService = DependencyService.Get<IHttpService>();
         }
 
-        public async Task<IList<Media>> GetMediaList()
+        public async Task<IEnumerable<MyMedia>> GetMediaListAsync()
         {
             string url = $"{NOW_PLAYING_URL}";
 
@@ -31,9 +31,9 @@ namespace MoviesPocketXForms.Providers
 
             System.Diagnostics.Debug.WriteLine("\n\nResults: " + results + "\n\n");
 
-            var items = JsonConvert.DeserializeObject<List<Media>>(results.ToString());
+            var items = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<MyMedia>>(results.ToString()));
 
-            System.Diagnostics.Debug.WriteLine("\n\nItems: " + items[0].Title + "\n\n");
+            //System.Diagnostics.Debug.WriteLine("\n\nItems: " + items[0].Title + "\n\n");
             return items;
         }
 

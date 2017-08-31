@@ -16,7 +16,7 @@
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            (this.BindingContext as MainPageViewModel).InitAsync();
+            (this.BindingContext as MainPageViewModel).Init();
         }
 
         async void Hola(object sender, EventArgs e)
