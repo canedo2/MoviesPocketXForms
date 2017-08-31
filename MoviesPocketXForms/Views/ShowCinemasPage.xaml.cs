@@ -6,11 +6,13 @@
     using Plugin.Geolocator;
     using System;
     using System.Threading.Tasks;
+    using System.Linq;
+    using System.Collections.Generic;
 
     public partial class ShowCinemasPage : ContentPage
     {
         public Command updateRegion;
-        public CrossGeolocator locator;
+        public Geocoder geocoder;
 
         public ShowCinemasPage()
         {
@@ -23,23 +25,41 @@
             base.OnAppearing();
 			
             (this.BindingContext as ShowCinemasPageViewModel).Init();
-			var locator = CrossGeolocator.Current;
-			System.Diagnostics.Debug.WriteLine("\n\n" + locator + "\n\n");
+            geocoder = new Geocoder();
 
-            //updateRegion.Execute(null);
+            updateRegion.Execute(null);
 
         }
 
         public async Task moveMapToUserLocationAsync()
         {
-            
-            /*locator.DesiredAccuracy = 50;
-            var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(10));
+            CrossGeolocator.Current.DesiredAccuracy = 50;
+            var position = await CrossGeolocator.Current.GetPositionAsync(TimeSpan.FromSeconds(10));
             if (position != null)
             {
-                MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(position.Latitude, position.Longitude), Distance.FromMiles(1)).WithZoom(20));
-            }*/
+                MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(position.Latitude, position.Longitude), Distance.FromMiles(15)).WithZoom(3));
+            }
+
+            var cinemas = await Task.Run(() => GetPositionsByAddress("cine"));
+
+            foreach (var location in cinemas) {
+				var pin = new Pin
+				{
+					Type = PinType.Place,
+					Position = location,
+					Label = "Cine",
+					Address = "Aquí hay un cine."
+				};
+                MyMap.Pins.Add(pin);
+            }
+
         }
+
+		public async Task<List<Position>> GetPositionsByAddress(string address)
+		{
+            var locations = await geocoder.GetPositionsForAddressAsync(address);
+            return locations.ToList();
+		}
     }
 
 
