@@ -13,9 +13,9 @@ namespace MoviesPocketXForms.Services
 		{
             DetailPage detailPage = new DetailPage();
 			var vmPage = (detailPage.BindingContext as DetailPageViewModel);
-			vmPage.Media = media;
+			vmPage.MyMedia = media;
 
-			await App.Current.MainPage.Navigation.PushAsync(detailPage);
+            await App.Current.MainPage.Navigation.PushAsync(detailPage);
 		}
 
         public async Task NavigateToShowCinemasPage(){

@@ -1,14 +1,11 @@
 ﻿namespace MoviesPocketXForms.ViewModels
 {   using Base;
     using Models;
+
     public class DetailPageViewModel: BaseViewModel
     {   
-        public MyMedia Media
-        {
-            get;
-            set;
-        }
-
+        private MyMedia myMedia;
+        public string Jaja = "Hola";
         public DetailPageViewModel()
         {
             
@@ -19,6 +16,14 @@
             IsLoading = true;
         }
 
-
+		public MyMedia MyMedia
+		{
+			get { return myMedia; }
+			set
+			{
+				myMedia = value;
+				RaisePropertyChanged();
+			}
+		}
     }
 }

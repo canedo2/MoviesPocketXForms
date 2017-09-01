@@ -12,18 +12,10 @@
 
         }
        
-
         protected override void OnAppearing()
         {
             base.OnAppearing();
             (this.BindingContext as MainPageViewModel).Init();
-        }
-
-        async void Hola(object sender, EventArgs e)
-        { 
-            System.Diagnostics.Debug.WriteLine("HOLA");
-            await DisplayAlert("hola","hola","adios");
-            await Navigation.PushAsync(new ShowCinemasPage());
         }
     }
 }

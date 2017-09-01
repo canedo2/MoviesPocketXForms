@@ -49,7 +49,7 @@
     </Compile>
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
-    <Compile Include="Models\Media.cs" />
+    <Compile Include="Models\MyMedia.cs" />
     <Compile Include="Providers\IWebApiProvider.cs" />
     <Compile Include="Providers\WebApiProvider.cs" />
     <Compile Include="Services\HttpService\HttpService.cs" />

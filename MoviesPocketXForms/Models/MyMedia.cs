@@ -1,4 +1,5 @@
-﻿namespace MoviesPocketXForms.Models
+﻿
+namespace MoviesPocketXForms.Models
 {
     using Newtonsoft.Json;
     public class MyMedia

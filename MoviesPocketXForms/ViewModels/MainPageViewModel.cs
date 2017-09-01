@@ -18,7 +18,7 @@
         private IWebApiProvider<MyMedia> webApiProvider;
         private INavigationService navigationService;
         public ICommand ShowCinemasCommand { get; }
-        public Command GetItemsCommand { get; }
+        private MyMedia selectedMyMedia;
 
         public MainPageViewModel()
         {
@@ -68,6 +68,20 @@
         private async Task ShowCinemas(){
 
             await this.navigationService.NavigateToShowCinemasPage();
-        } 
+        }
+
+        public MyMedia SelectedMyMedia
+		{
+			get { return selectedMyMedia; }
+			set
+			{
+				selectedMyMedia = value;
+				if (selectedMyMedia != null)
+				{
+                    this.navigationService.NavigateToDetailPage(SelectedMyMedia);
+				}
+				RaisePropertyChanged();
+			}
+		}
     }
 }
