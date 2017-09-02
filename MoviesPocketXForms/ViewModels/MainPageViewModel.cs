@@ -15,15 +15,14 @@
 	public class MainPageViewModel: BaseViewModel
     {
         private ObservableCollection<MyMedia> items;
-        private IWebApiProvider<MyMedia> webApiProvider;
+        private IWebApiProvider webApiProvider;
         private INavigationService navigationService;
         public ICommand ShowCinemasCommand { get; }
         private MyMedia selectedMyMedia;
-
         public MainPageViewModel()
         {
             items = new ObservableCollection<MyMedia>();
-            webApiProvider = DependencyService.Get<IWebApiProvider<MyMedia>>();
+            webApiProvider = DependencyService.Get<IWebApiProvider>();
             navigationService = DependencyService.Get<INavigationService>();
 
             ShowCinemasCommand = new Command(async () => await ShowCinemas());
