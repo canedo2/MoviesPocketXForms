@@ -10,22 +10,30 @@
 	using System.Threading.Tasks;
     using System.Windows.Input;
 	using System.Linq;
-
+    using Newtonsoft;
 
 	public class MainPageViewModel: BaseViewModel
     {
         private ObservableCollection<MyMedia> items;
         private IWebApiProvider webApiProvider;
         private INavigationService navigationService;
+        private IStorageProvider storageProvider;
         public ICommand ShowCinemasCommand { get; }
+        public ICommand ShowFavoritesCommand { get; }
         private MyMedia selectedMyMedia;
+        private ObservableCollection<MyMedia> keepApiItems;
+        private bool showingFavorites = false;
+
         public MainPageViewModel()
         {
             items = new ObservableCollection<MyMedia>();
             webApiProvider = DependencyService.Get<IWebApiProvider>();
             navigationService = DependencyService.Get<INavigationService>();
+            storageProvider = DependencyService.Get<IStorageProvider>();
 
             ShowCinemasCommand = new Command(async () => await ShowCinemas());
+            ShowFavoritesCommand = new Command(() =>  ShowFavorites());
+
         }
 
         public async Task Init(){
@@ -39,9 +47,8 @@
 
             }
 
-            Items = new ObservableCollection<MyMedia>(mediaList.ToList());              
-
-        }
+            Items = new ObservableCollection<MyMedia>(mediaList.ToList());
+		}
 
 		public ObservableCollection<MyMedia> Items
 		{
@@ -54,8 +61,21 @@
 		}
 
         private async Task ShowCinemas(){
-
             await this.navigationService.NavigateToShowCinemasPage();
+        }
+
+        private void ShowFavorites(){
+            if (showingFavorites == false){
+                keepApiItems = Items;
+                Items = storageProvider.GetFavorites();
+                showingFavorites = true;
+            }
+            else {
+                Items = keepApiItems;
+                showingFavorites = false;
+            }
+                
+                    
         }
 
         public MyMedia SelectedMyMedia

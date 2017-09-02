@@ -15,7 +15,7 @@
 			webApiProvider = DependencyService.Get<IWebApiProvider>();	
         }
 
-		public async void Init()
+		public void Init()
 		{
 			IsLoading = true;
 		}
@@ -32,6 +32,5 @@
 			}
             return pins;
         }
-
 	}
 }

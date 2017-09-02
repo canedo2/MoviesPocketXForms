@@ -8,6 +8,7 @@
         public DetailPage()
         {
             InitializeComponent();
+
         }
 
 		protected override void OnAppearing()

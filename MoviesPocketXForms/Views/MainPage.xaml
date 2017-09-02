@@ -13,7 +13,7 @@
     <ContentPage.Title>Buscar</ContentPage.Title>
     <ContentPage.Content>
         <StackLayout>
-            <SearchBar Placeholder="Buscar" VerticalOptions="Start"/>
+            <Button Text="Mostrar favoritos" HorizontalOptions="FillAndExpand" Command="{Binding ShowFavoritesCommand}" BackgroundColor="Maroon" TextColor="White" BorderRadius="0"/>
             <ListView ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedMyMedia}" SeparatorVisibility="Default" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HasUnevenRows="false" RowHeight="200">
                 <ListView.ItemTemplate>
                     <DataTemplate>

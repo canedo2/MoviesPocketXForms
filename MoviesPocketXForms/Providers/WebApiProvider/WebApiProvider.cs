@@ -25,15 +25,16 @@ namespace MoviesPocketXForms.Providers
 
             var result = await httpService.GetAsync<Dictionary<string, object>>(url);
 
-            System.Diagnostics.Debug.WriteLine("\n\nResult: " + result + "\n\n");
+            //System.Diagnostics.Debug.WriteLine("\n\nResult: " + result + "\n\n");
 
             var results = result["results"];
 
-            System.Diagnostics.Debug.WriteLine("\n\nResults: " + results + "\n\n");
+            //System.Diagnostics.Debug.WriteLine("\n\nResults: " + results + "\n\n");
 
             var items = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<MyMedia>>(results.ToString()));
 
-            //System.Diagnostics.Debug.WriteLine("\n\nItems: " + items[0].Title + "\n\n");
+			//System.Diagnostics.Debug.WriteLine("\n\nItems: " + items[0].Title + "\n\n");
+
             return items;
         }
 
@@ -45,7 +46,7 @@ namespace MoviesPocketXForms.Providers
 
 			var items = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<Cinema>>(results.ToString()));
 
-            System.Diagnostics.Debug.WriteLine("\n\nItems: " + items.ToString() + "\n\n");
+            //System.Diagnostics.Debug.WriteLine("\n\nItems: " + items.ToString() + "\n\n");
 			return items;
 		}
     }
