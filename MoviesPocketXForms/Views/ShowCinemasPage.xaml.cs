@@ -40,16 +40,19 @@
                 MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(position.Latitude, position.Longitude), Distance.FromMiles(15)).WithZoom(3));
             }
 
-            var cinemas = await Task.Run(() => GetPositionsByAddress("cine"));
 
-            foreach (var location in cinemas) {
-				var pin = new Pin
-				{
-					Type = PinType.Place,
-					Position = location,
-					Label = "Cine",
-					Address = "Aquí hay un cine."
-				};
+            var cinemas = await (this.BindingContext as ShowCinemasPageViewModel).CinemasOnArea(position.Longitude, position.Latitude);
+
+            foreach (var cinema in cinemas) {
+				var cinemaPosition = new Position(cinema.Geometry.Location.Lat,cinema.Geometry.Location.Lng);
+                var pin = new Pin
+                {
+                    Type = PinType.Place,
+                    Position = cinemaPosition,
+                    Label = cinema.Name,
+                    Address = "Puntuación: " + cinema.Rating
+                };
+                System.Diagnostics.Debug.WriteLine(pin.Label);
                 MyMap.Pins.Add(pin);
             }
 
