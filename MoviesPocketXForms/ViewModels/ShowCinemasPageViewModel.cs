@@ -27,7 +27,6 @@
 			foreach (Cinema cinema in cinemaList)
 			{
 				pins.Add(cinema);
-				//System.Diagnostics.Debug.WriteLine(cinema);
 
 			}
             return pins;

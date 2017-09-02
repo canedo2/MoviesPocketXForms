@@ -34,20 +34,25 @@
             ShowCinemasCommand = new Command(async () => await ShowCinemas());
             ShowFavoritesCommand = new Command(() =>  ShowFavorites());
 
+
         }
 
         public async Task Init(){
             IsLoading = true;
+            if(!showingFavorites){
+                var mediaList = await webApiProvider.GetMediaListAsync();
+				foreach (MyMedia m in mediaList)
+				{
+					m.PosterPath = "https://image.tmdb.org/t/p/w500" + m.PosterPath;
+					items.Add(m);
 
-            var mediaList = await webApiProvider.GetMediaListAsync();
-
-            foreach (MyMedia m in mediaList){
-                m.PosterPath = "https://image.tmdb.org/t/p/w500" + m.PosterPath;
-                items.Add(m);
-
+				}
+                Items = new ObservableCollection<MyMedia>(mediaList.ToList());
             }
-
-            Items = new ObservableCollection<MyMedia>(mediaList.ToList());
+            else {
+                Items = storageProvider.GetFavorites();
+            }
+            IsLoading = false;
 		}
 
 		public ObservableCollection<MyMedia> Items
@@ -65,17 +70,22 @@
         }
 
         private void ShowFavorites(){
-            if (showingFavorites == false){
-                keepApiItems = Items;
-                Items = storageProvider.GetFavorites();
-                showingFavorites = true;
-            }
-            else {
-                Items = keepApiItems;
-                showingFavorites = false;
-            }
-                
-                    
+            
+            if(!IsLoading){
+                IsLoading = true;
+				if (showingFavorites == false)
+				{
+					keepApiItems = Items;
+					Items = storageProvider.GetFavorites();
+					showingFavorites = true;
+				}
+				else
+				{
+					Items = keepApiItems;
+					showingFavorites = false;
+				}
+                IsLoading = false;
+			}
         }
 
         public MyMedia SelectedMyMedia

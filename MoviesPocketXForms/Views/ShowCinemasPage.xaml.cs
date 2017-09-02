@@ -52,7 +52,6 @@
                     Label = cinema.Name,
                     Address = "Puntuación: " + cinema.Rating
                 };
-                System.Diagnostics.Debug.WriteLine(pin.Label);
                 MyMap.Pins.Add(pin);
             }
 
