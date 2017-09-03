@@ -32,8 +32,8 @@
                 <Image x:Name="image" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Source="{Binding MyMedia.PosterPath}" Aspect="AspectFit" Margin="8,8,8,8"/>
                 <Label Grid.Row="5" Grid.ColumnSpan="5" Text="{Binding MyMedia.Title}" FontSize="20" FontAttributes="Bold" Margin="0,0,0,0" HorizontalTextAlignment="Center" TextColor="White" HorizontalOptions="FillAndExpand" />
                 <Label Grid.Row="6" Grid.ColumnSpan="5" Grid.RowSpan="3" Text="{Binding MyMedia.Overview}" FontSize="14" Margin="16,16,16,16" HeightRequest="300" TextColor="Silver"/>
-                <Label Grid.Row="9" Grid.ColumnSpan="3" Text="{Binding MyMedia.VoteAverage, StringFormat='Puntuación: {0}'}}" FontSize="18" FontAttributes="Bold" Margin="4,4,0,4" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" HorizontalOptions="FillAndExpand" BackgroundColor="Olive"/>
-                <Button Grid.Column="3" Grid.ColumnSpan="2" Grid.Row= "9" Text="Favorito" HorizontalOptions="FillAndExpand" Command="{Binding SaveFavoriteCommand}" BackgroundColor="{Binding FavoriteColor}" TextColor="Black" BorderRadius="10" Margin = "0,4,4,4">
+                <Label Grid.Row="9" Grid.ColumnSpan="3" Text="{Binding MyMedia.VoteAverage, StringFormat='Puntuación: {0}'}}" FontSize="18" FontAttributes="Bold" Margin="24,4,0,4" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="White" HorizontalOptions="FillAndExpand"/>
+                <Button Grid.Column="3" Grid.ColumnSpan="2" Grid.Row= "9" Text="Favorito" HorizontalOptions="FillAndExpand" Command="{Binding SaveFavoriteCommand}" BackgroundColor="{Binding FavoriteColor}" TextColor="Black" BorderRadius="10" Margin = "0,4,4,4" Clicked="StartImageAnimation">
                     
                 </Button>
 
