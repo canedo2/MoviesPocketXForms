@@ -8,14 +8,46 @@
         <viewmodels:ShowCinemasPageViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Title>Cines cercanos</ContentPage.Title>
+
 	<ContentPage.Content>
-        <StackLayout x:Name="StackLayout" 
-            HorizontalOptions = "FillAndExpand" VerticalOptions ="FillAndExpand">
-            <maps:Map HorizontalOptions = "FillAndExpand"
+        <Grid HeightRequest="48" HorizontalOptions="FillAndExpand" Margin="0,0,0,0" BackgroundColor="Maroon" Padding="0,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Entry x:Name="entry" Text="{Binding SearchString}" Grid.Column="0" Grid.ColumnSpan="4" Placeholder="Buscar cine" Margin="4,4,0,0"/>
+            
+                <Button Grid.Column="4" Text="Buscar" TextColor="Black" BackgroundColor="White" Margin="0,4,4,0" Command="{Binding SearchButtonCommand}">
+                    <Button.Triggers>
+                        <DataTrigger TargetType="Button" Binding="{Binding Source={x:Reference entry}, Path=Text.Length}" Value="0">
+                            <Setter Property="IsEnabled" Value="False"/>
+                            <Setter Property="TextColor" Value="LightGray"/>
+                        </DataTrigger>
+                    </Button.Triggers>
+                 </Button>
+                 <maps:Map HorizontalOptions = "FillAndExpand"
                 VerticalOptions ="FillAndExpand"
                 x:Name="MyMap"
                 IsShowingUser="true"
-                MapType="Street"/>
-        </StackLayout>
+                MapType="Street"
+                Grid.Row="1"
+                Grid.RowSpan="9"
+                Grid.ColumnSpan="5"/>
+        </Grid>
 	</ContentPage.Content>
 </ContentPage>
